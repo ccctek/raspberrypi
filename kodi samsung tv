@@ -1,0 +1,15 @@
+Colors washed out
+This problem can be because the Raspberry Pi's HDMI default configuration isn't working for your TV. I have observed this problem for several different Samsung sets, both old and new.
+
+HDMI pixel encoding
+Edit the hdmi_pixel_encoding property in config.txt. Normally on Linux this is located in /boot/config.txt but on LibreELEC, which has a mostly read-only file system, the location is /flash/config.txt. You also need to ensure you have editing rights:
+
+mount -o remount,rw /flash
+nano /flash/config.txt
+In the bottom of the file, add a line with hdmi_pixel_encoding=2 and then reboot. If 2 isn't working, there are other values to try from the documentation:
+
+0: default (RGB limited for CEA, RGB full for DMT)
+1: RGB limited (16-235)
+2: RGB full (0-255)
+3: YCbCr limited (16-235)
+4: YCbCr full (0-255)
